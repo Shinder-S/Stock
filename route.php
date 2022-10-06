@@ -1,13 +1,40 @@
 <?php
-require_once "src/sections.php";
+require_once "Controllers/DrinksController.php";
+require_once "Controllers/UserController.php";
 
+$action = $_GET["action"];
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+define('BASE_DRINKS', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/drinks');
+define('BASE_LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/login');
+define('BASE_LOGOUT', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/logout');
 
-if(!empty($_GET['action']))
-    $action = $_GET['action'];
-else 
-    $action = 'home';
+$controller = new DrinksController();
 
+if($action == ''){
+    $controller->GetDrinks();
+}else{
+    if(isset($action)){
+        $partsURL = explode("/", $action);
 
-$params = explode('/', $action);
-
+        if($partsURL[0] == "drinks")
+            $controller->GetDrinks();
+        elseif ($partsURL[0] == "drinks-csr") 
+            $controller->GetDrinksSCR();
+        elseif($partsURL[0] == "insert") 
+            $controller->InsertDrink();
+        elseif($partsURL[0] == "ended") 
+            $controller->RefreshDrink($partesURL[1]);
+        elseif($partsURL[0] == "delete") 
+            $controller->DeleteDrink($partesURL[1]);
+        elseif($partsURL[0] == "login") {
+            $controllerUser = new UserController();
+            $controllerUser->Login();
+        }elseif($partsURL[0] == "sesion start") {
+            $controllerUser = new UserController();
+            $controllerUser->SesionStart();
+        }elseif($partsURL[0] == "logout") {
+            $controllerUser = new UserController();
+            $controllerUser->Logout();
+        }
+    }
+}

@@ -16,9 +16,9 @@ class DrinksModel {
     }
 
     public function GetDrink($id){
-        $sentencia = $this->db->prepare( "select * from drinks where id= ?");
-        $sentencia->execute([$id]);
-        $drink = $sentencia->fetch(PDO::FETCH_OBJ);
+        $sentence = $this->db->prepare( "select * from drinks where id= ?");
+        $sentence->execute([$id]);
+        $drink = $sentence->fetch(PDO::FETCH_OBJ);
         
         return $drink;
     }
@@ -28,7 +28,7 @@ class DrinksModel {
         if($image)
             $filepath = $this->moveFile($image);
 
-        $sentence = $this->db->prepare("INSERT INTO drink(name,brand,amount,id_category, imagen_url) VALUES(?,?,?,?,?)");
+        $sentence = $this->db->prepare("INSERT INTO drink(title,brand,amount,id_category, imagen_url) VALUES(?,?,?,?,?)");
         $sentence->execute(array($name,$brand,$amount,$id_category, $filepath));
 
         return $this->db->lastInsertId();
@@ -46,13 +46,13 @@ class DrinksModel {
     }
 
     public function RefreshDrink($name, $brand, $amount, $id_category){
-        $sentencia =  $this->db->prepare("UPDATE drinks SET name=?, brand=?, amount=? WHERE id=?");
-        $sentencia->execute(array($name, $brand, $amount, $id_category));
+        $sentence =  $this->db->prepare("UPDATE drinks SET name=?, brand=?, amount=? WHERE id=?");
+        $sentence->execute(array($name, $brand, $amount, $id_category));
     }
 
     public function DeleteDrink($id){
-        $sentencia = $this->db->prepare("DELETE FROM drink WHERE id=?");
-        $sentencia->execute(array($id));
+        $sentence = $this->db->prepare("DELETE FROM drink WHERE id=?");
+        $sentence->execute(array($id));
     }
 }
 ?>

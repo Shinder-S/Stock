@@ -1,6 +1,6 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require('libs/Smarty.class.php');
 
 class UserView {
     function __construct(){
