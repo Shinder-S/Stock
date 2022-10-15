@@ -2,13 +2,14 @@
 
 require_once('libs/Smarty.class.php');
 
-class TasksView {
+class DrinksView {
     function __construct(){
 
     }
 
     public function DisplayTables($drinks){
 
+        $smarty = new Smarty();
         $smarty->assing('title', "List of Stock");
         $smarty->assing('BASE_URL', BASE_URL);
         $smarty->assing('list_drinks', $drinks);
@@ -17,6 +18,7 @@ class TasksView {
 
     public function DisplayTablesCSR(){
 
+        $smarty = new Smarty();
         $smarty->assing('title', "List of Stocks CSR");
         $smarty->assing('BASE_URL', BASE_URL);
         $smarty->display('templates/show_table_csr.tpl');
@@ -26,3 +28,4 @@ class TasksView {
         echo $msg;
     }
 }
+?>

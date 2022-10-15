@@ -1,5 +1,5 @@
 {literal}
-<section id="templates-vue-tasks">
+<section id="templates-vue-drinks">
 
     <h3> {{subtitle}} </h3>
     <ul>

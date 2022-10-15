@@ -1,7 +1,7 @@
 <?php
 
-require_once "Models/DrinksModel.php";
-require_once "Views/DrinksView.php";
+require_once('Models/DrinksModel.php');
+require_once('Views/DrinksView.php');
 
 class DrinksController {
 
@@ -14,7 +14,7 @@ class DrinksController {
     }
 
     public function checkLogIn(){
-        session_starrt();
+        session_start();
 
         if(!isset($_SESSION['userId'])){
             header("Location: " . URL_LOGIN);

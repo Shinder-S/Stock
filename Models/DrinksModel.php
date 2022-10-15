@@ -4,11 +4,11 @@ class DrinksModel {
     private $db;
 
     function __construct(){
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=drinks;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_stock;charset=utf8', 'root', '');
     }
 
     public function GetDrinks(){
-        $sentence = $this->db->prepare( "select * from drinks");
+        $sentence = $this->db->prepare( "SELECT * from drinks");
         $sentence->execute();
         $drinks = $sentencia->fetchAll(PDO::FETCH_OBJ);
         
