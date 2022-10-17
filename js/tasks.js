@@ -2,19 +2,6 @@
 
 document.querySelector("#form-stock").addEventListener('submit', addDrink);
 
-//Define vue app
-let app = new Vue({
-    he: "#template-vue-drinks",
-    data: {
-        subtitle: "These drinks are rendered from the client using Vue.js",
-        drinks: [],
-        auth: true
-    }
-});
-
-/** 
- * Get the list of tasks from the API and render them with Vue
-*/
 
 function getDrinks(){
     fetch("api/drinks")

@@ -15,12 +15,10 @@ class DrinksController {
 
     public function checkLogIn(){
         session_start();
-
         if(!isset($_SESSION['userId'])){
             header("Location: " . URL_LOGIN);
             die();
         }
-
         if(isset($SESSION['LAST_ACTIVITY']) && (time() - $SESSION['LAST_ACTIVITY'] > 5000)){
             header("Location: " . URL_LOGOUT);
             die();
@@ -28,52 +26,38 @@ class DrinksController {
         $_SESSION['LAST_ACTIVITY'] = time();
     }
 
-    public function GetDrinks(){
+    public function getDrinks(){
         $this->checkLogIn();
-        $drinks = $this->model->GetDrinks();
-        $this->view->DisplayDrinks($drinks);
+        $drinks = $this->model->getDrinks();
+        $categories= $this->model->getCategories();
+        $this->view->DisplayTables($drinks, $categories);
     }
 
-    public function GetDrinksCSR() {
+    public function insertDrink(){
         $this->checkLogIn();
-        $this->view->DisplayDrinksCSR();
+        $this->model->insertDrink($_POST['name'], $_POST['brand'], $_POST['amount'], $_POST['id_category']);
+        header("Location: " . BASE_URL);
     }
 
-    public function InsertDrink(){
+    public function deleteDrink($id){
         $this->checkLogIn();
-        $ended = 0;
-        if(isset($_POST['ended'])){
-            $ended = 1;
-        }
+        $this->model->deleteDrink($id);
+        header("Location: " . BASE_URL);
+    }
 
-        if($_FILES['image']['name']){
-            if($_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/png"){
-                $this->model->InsertDrink($_POST['drink-name'], $_POST['brand'], $_POST['amount'], $ended, $_FILES['image']);
-            }
-            else {
-                $this->view->showError("Format denied");
-                die();
-            }
-        }
-            else {
-                $this->view->InsertDrink($_POST['drink-name'], $_POST['brand'], $_POST['amount'], $ended, $_FILES['image']);
-                die();
-            }
-            header("Location: " . BASE_URL);
-        }
+    public function getDrink($id){
+        $this->checkLogIn();
+        $drink = $this->model->getDrink($id);
+        $categories= $this->model->getCategories();
+        $this->view->displayDrink($drink, $categories);
+    }
 
-        public function FinishDrink($id){
-            $this->checkLogIn();
-            $this->model->FinishDrink($id);
-            header("Location: " . BASE_URL);
-        }
-
-        public function DeleteDrink($id){
-            $this->checkLogIn();
-            $this->model->DeleteDrink($id);
-            header("Location: " . BASE_URL);
-        }
-
+    public function updateDrink($id){
+        $this->checkLogIn();
+        $this->model->updateDrink($id, $_POST['name'], $_POST['brand'], $_POST['amount'], $_POST['id_category']);
+        header("Location: " . BASE_URL);
+    }
+    
 }
 
 ?>

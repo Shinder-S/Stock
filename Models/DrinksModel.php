@@ -7,15 +7,15 @@ class DrinksModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_stock;charset=utf8', 'root', '');
     }
 
-    public function GetDrinks(){
+    public function getDrinks(){
         $sentence = $this->db->prepare( "SELECT * from drinks");
         $sentence->execute();
-        $drinks = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $drinks = $sentence->fetchAll(PDO::FETCH_OBJ);
         
         return $drinks;
     }
 
-    public function GetDrink($id){
+    public function getDrink($id){
         $sentence = $this->db->prepare( "select * from drinks where id= ?");
         $sentence->execute([$id]);
         $drink = $sentence->fetch(PDO::FETCH_OBJ);
@@ -23,36 +23,28 @@ class DrinksModel {
         return $drink;
     }
 
-    public function InsertDrink($name, $brand, $amount, $id_category, $image = null){
-        $filepath = null;
-        if($image)
-            $filepath = $this->moveFile($image);
-
-        $sentence = $this->db->prepare("INSERT INTO drink(title,brand,amount,id_category, imagen_url) VALUES(?,?,?,?,?)");
-        $sentence->execute(array($name,$brand,$amount,$id_category, $filepath));
-
+    public function insertDrink($name, $brand, $amount, $id_category){
+        $sentence = $this->db->prepare("INSERT INTO drinks(name,brand,amount,id_category) VALUES(?,?,?,?)");
+        $sentence->execute(array($name,$brand,$amount,$id_category));
         return $this->db->lastInsertId();
     }
 
-    private function moveFile($image) {
-        $filepath = "img/drink/" . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
-        move_uploaded_file($image['tmp_name'], $filepath);
-        return $filepath;
+    public function updateDrink($id, $name, $brand, $amount, $id_category){
+        $sentence =  $this->db->prepare("UPDATE drinks SET name=?, brand=?, amount=?, id_category=? WHERE id=?");
+        $sentence->execute(array($name, $brand, $amount, $id_category, $id));
     }
 
-    public function EndLoad($id){
-        $sentence =  $this->db->prepare("UPDATE drinks SET ended=1 WHERE id=?");
+    public function deleteDrink($id){
+        $sentence = $this->db->prepare("DELETE FROM drinks WHERE id=?");
         $sentence->execute(array($id));
     }
-
-    public function RefreshDrink($name, $brand, $amount, $id_category){
-        $sentence =  $this->db->prepare("UPDATE drinks SET name=?, brand=?, amount=? WHERE id=?");
-        $sentence->execute(array($name, $brand, $amount, $id_category));
+    
+    public function getCategories(){
+        $sentence = $this->db->prepare( "SELECT * from categories");
+        $sentence->execute();
+        $categories = $sentence->fetchAll(PDO::FETCH_OBJ);
+        return $categories;
     }
 
-    public function DeleteDrink($id){
-        $sentence = $this->db->prepare("DELETE FROM drink WHERE id=?");
-        $sentence->execute(array($id));
-    }
 }
 ?>

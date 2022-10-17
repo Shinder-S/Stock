@@ -24,12 +24,12 @@ class Route {
             return false;
         }
         foreach ($partsRoute as $key => $part) {
-            if($parts[0] != ":"){
+            if($part[0] != ":"){
                 if($part != $partsURL[$key])
                     return false;
             } 
             else
-            $this->params[$part] = $partesURL[$key];
+            $this->params[$part] = $partsURL[$key];
         }
         return true;
     }

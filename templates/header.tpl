@@ -12,8 +12,11 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <li><a href="history"></a>History</li>
-        <li><a href="about-drink"></a>About drink</li>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="drinks">Drinks</a></li>
+            <li class="nav-item"><a class="nav-link" href="categories">Categories</a></li>
+            <li class="nav-item"><a class="nav-link" href="logout">Log Out</a></li>
+        </ul>
     </nav>
 
         <h2 class="text-muted">{$title}</h2>

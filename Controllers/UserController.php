@@ -12,34 +12,27 @@ class UserController {
         $this->view = new UserView();
     }
     
-    public function SesionStart(){
+    public function sessionStart(){
         $password = $_POST['pass'];
-
-        $user = $this->model->GetPassword($_POST['user']);
-
+        $user = $this->model->getPassword($_POST['user']);
         if (isset($user) && $user != null && password_verify($password, $user->password)){
             session_start();
             $_SESSION['user'] = $user->email;
             $_SESSION['userId'] = $user->id;
-            header("Location: " . URL_TAREAS);
+            header("Location: " . URL_DRINKS);
         }else{
             header("Location: " . URL_LOGIN);
         }
-       // header("Location: " . BASE_URL);
     }
 
-    public function Login(){
-        $this->view->DisplayLogin();
+    public function login(){
+        $this->view->displayLogin();
     }
 
-    public function LogOut(){
+    public function logOut(){
         session_start();
         session_destroy();
         header("Location: " . URL_LOGIN);
     }
-
-    
 }
-
-
 ?>
