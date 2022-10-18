@@ -5,7 +5,7 @@ abstract class ApiController {
     protected $view;
     protected $data;
 
-    public fuction __construct() {
+    public function __construct() {
         $this->view = new JSONView();
         $this->data = file_get_contents("php://input");
         $this->model = new DrinksModel();

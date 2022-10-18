@@ -30,7 +30,7 @@ class DrinksController {
         $this->checkLogIn();
         $drinks = $this->model->getDrinks();
         $categories= $this->model->getCategories();
-        $this->view->DisplayTables($drinks, $categories);
+        $this->view->displayTables($drinks, $categories);
     }
 
     public function insertDrink(){
@@ -57,6 +57,7 @@ class DrinksController {
         $this->model->updateDrink($id, $_POST['name'], $_POST['brand'], $_POST['amount'], $_POST['id_category']);
         header("Location: " . BASE_URL);
     }
+    
     
 }
 

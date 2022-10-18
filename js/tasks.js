@@ -18,7 +18,6 @@ function addDrink(e){
         name: document.querySelector("input[name=name]").value,
         brand: document.querySelector("input[name=brand]").value,
         amount: document.querySelector("input[name=amount]").value,
-        ended: document.querySelector("input[name=ended]").cheked
     }
 
     fetch('api/drinks', {

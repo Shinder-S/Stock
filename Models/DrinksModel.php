@@ -6,6 +6,14 @@ class DrinksModel {
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_stock;charset=utf8', 'root', '');
     }
+    
+    public function getDrink($id){
+        $sentence = $this->db->prepare( "SELECT * from drinks where id= ?");
+        $sentence->execute([$id]);
+        $drink = $sentence->fetch(PDO::FETCH_OBJ);
+
+        return $drink;
+    }
 
     public function getDrinks(){
         $sentence = $this->db->prepare( "SELECT * from drinks");
@@ -13,14 +21,6 @@ class DrinksModel {
         $drinks = $sentence->fetchAll(PDO::FETCH_OBJ);
         
         return $drinks;
-    }
-
-    public function getDrink($id){
-        $sentence = $this->db->prepare( "select * from drinks where id= ?");
-        $sentence->execute([$id]);
-        $drink = $sentence->fetch(PDO::FETCH_OBJ);
-        
-        return $drink;
     }
 
     public function insertDrink($name, $brand, $amount, $id_category){

@@ -10,7 +10,7 @@
         <span class="fas fa-key"></span>
         <input type="password" name="pass" placeholder="Password">
     </div>
-    <button class="btn btn-dark">Login</button>
+    <button class="btn btn-dark" value="login">Login</button>
 </form>
 </body>
 </html>
