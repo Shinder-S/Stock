@@ -31,7 +31,7 @@ class DrinksModel {
 
     public function updateDrink($id, $name, $brand, $amount, $id_category){
         $sentence =  $this->db->prepare("UPDATE drinks SET name=?, brand=?, amount=?, id_category=? WHERE id=?");
-        $sentence->execute(array($name, $brand, $amount, $id_category, $id));
+        $sentence->execute(array( $name, $brand, $amount, $id_category, $id));
     }
 
     public function deleteDrink($id){

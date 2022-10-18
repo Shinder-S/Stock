@@ -11,7 +11,7 @@
     <input type="number" name="amount" placeholder="Amount">
     <select name="id_category">
     {foreach from=$list_categories item=category}
-        <option value="{$category->id}">{$category->category}</option>
+        <option value="{$category->id_category}">{$category->id_category}</option>
     {/foreach}
     </select>
     <button type="submit">Create New</button>
