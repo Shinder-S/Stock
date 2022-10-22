@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<form action='update/{$drink->id}' method="post" enctype="multipart/form-data">
+<form action='view/{$drink->id}' method="post" enctype="multipart/form-data">
     <input type="text" name="name" placeholder="Name" value="{$drink->name}">
     <input type="text" name="brand" placeholder="Brand" value="{$drink->brand}">
     <input type="number" name="amount" value="{$drink->amount}">

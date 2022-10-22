@@ -1,1 +1,0 @@
-ALTER TABLE `drinks` ADD `image_url` VARCHAR(255) NULL AFTER `ended`;
