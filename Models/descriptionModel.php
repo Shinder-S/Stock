@@ -5,12 +5,12 @@ require_once("drinkModel.php");
 
 class DescriptionModel extends dbModel{
     private $userModel;
-    private $drinkModel;
+    private $drinksModel;
 
     function __construct(){
         parent::__construct();
         $this->userModel = new UserModel;
-        $this->drinkModel = new DrinkModel;
+        $this->drinksModel = new DrinksModel;
     }
 
     function getDrinkDescription($id_category){
@@ -36,7 +36,7 @@ class DescriptionModel extends dbModel{
         $descriptions = $sentence->fetchAll(PDO::FETCH_ASSOC);
         foreach($sentence as $key => $description){
             $descriptions[$key]["email"] = $this->userModel->getUser($description["fk_user"])["email"];
-            $descriptions[$key]["description"] = $this->userModel->getDescription($description["fk_description"])["id_category"];
+            $descriptions[$key]["description"] = $this->drinksModel->getDescription($description["fk_description"])["id_category"];
         }
         return $descriptions;
     }

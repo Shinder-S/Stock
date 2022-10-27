@@ -39,7 +39,7 @@ class DrinksModel {
         $sentence->execute(array($id));
     }
     
-    public function getCategories(){
+    public function getDescription(){
         $sentence = $this->db->prepare( "SELECT * from categories");
         $sentence->execute();
         $categories = $sentence->fetchAll(PDO::FETCH_OBJ);

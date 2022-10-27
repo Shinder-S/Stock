@@ -18,7 +18,7 @@ class UserController {
         else{
           $user = $_POST['user'];
           $pass = $_POST['password'];
-          $hash = $this->userView->getUserEmail($user)['pass'];
+          $hash = $this->userModel->getUserEmail($user)['pass'];
             if(password_verify($pass, $hash)){
                 session_start();
                 $_SERVER['USER'] = $user;
@@ -32,7 +32,7 @@ class UserController {
         }        
     }
 
-    public function getCredentials($credential){
+    function getCredential($credential){
         session_start();
         if(!isset($_SESSION['USER']) || $credential != $this->userModel->getCredentials($_SESSION['USER'])){
             header("Location: index.php");
@@ -40,7 +40,7 @@ class UserController {
         }
     }
 
-    public function checkLogin(){
+    function checkLogin(){
         session_start();
         if(!isset($_SESSION['USER']))
             return false;
@@ -54,28 +54,28 @@ class UserController {
             return true;;
     }
 
-    public function getUser(){
+    function getUser(){
         return $this->userModel->getUserEmail($_SESSION['USER']);
     }
 
-    public function getCredentials(){
+    function getCredentials(){
         session_start();
-        $credential = $this->userModel->getCredentials($_SESSION['USER']);
+        $credential = $this->userModel->getCredential($_SESSION['USER']);
         return $credential;
     }
 
-    public function logOut(){
+    function logOut(){
         session_start();
         session_destroy();
         header("Location: index.php");
         die();
     }
 
-    public function showRecord(){
+    function showRecord(){
         $this->userView->showRecord();
     }
 
-    public function newUser(){
+    function newUser(){
         if(isset($_POST['email'])){
             if(!$this->userModel->getUser($_POST['email'])){
                 $newUser = array();
@@ -90,7 +90,7 @@ class UserController {
         }
     }
     
-    public function deleteUser(){
+    function deleteUser(){
         if(isset($_GET["id"])){
             $id_user = $_GET["id"];
             $user = $this->userModel->deleteUser($id_user);
@@ -99,7 +99,7 @@ class UserController {
         }
     }
 
-    public function changeCredential(){
+    function changeCredential(){
         if(isset($_GET["id"])){
             $id_user = $_GET["id"];
             $user = $this->userModel->changeCredential($id_user);
@@ -108,7 +108,7 @@ class UserController {
         }
     }
 
-    public function adminUser(){
+    function adminUser(){
         $users = $this->userModel->getUsers();
         $this->userView->show_admin_users($users);
     }
