@@ -12,7 +12,7 @@ class UserController {
         $this->userView = new UserView();
     }
     
-    public function login(){
+    function login(){
         if (!isset($_POST['user']) && !isset($_POST["password"]))
         $this->userView->show([]);
         else{

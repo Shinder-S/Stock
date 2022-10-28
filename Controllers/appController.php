@@ -32,17 +32,17 @@ class AppController{
             $this->drinkAppView->show_description();
         }
 
-        function getcheckImages($images){
+        function getCheckImages($images){
             $checkImages = [];
             for ($i=0; $i < count($images['size']); $i++) {
               if($images['size'][$i]>0 && ($images['type'][$i]=="image/jpeg" || $images['type'][$i]=="image/png")){
                 $image_aux = [];
                 $image_aux['tmp_name']=$images['tmp_name'][$i];
                 $image_aux['name']=$images['name'][$i];
-                $imagenesVerificadas[]=$image_aux;
+                $checkImages[]=$image_aux;
               }
             }
-            return $imagenesVerificadas;
+            return $checkImages;
         }
 
         function uploadImage(){

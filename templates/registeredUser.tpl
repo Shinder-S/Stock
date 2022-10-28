@@ -1,0 +1,1 @@
+<h3>Welcome to DrinkApp {$user}</h3>
