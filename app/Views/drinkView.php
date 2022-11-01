@@ -1,33 +1,25 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require_once 'libs/Smarty.class.php';
 
-class drinksView {
+class DrinkView extends ConectionView{
     function __construct(){
-
+        parent::__construct();
     }
 
-    public function displayTables($drinks, $categories){
+    function showDrinks($drinks){
 
-        $smarty = new Smarty();
-        $smarty->assign('title', "List of Stock");
-        $smarty->assign('BASE_URL', BASE_URL);
-        $smarty->assign('list_drinks', $drinks);
-        $smarty->assign('list_categories', $categories);
-        $smarty->display('templates/show_table.tpl');
+        $this->smarty->assign('count', count($drinks));
+        $this->smarty->assign('drinks', $drinks);
+        $this->smarty->display('drinkList.tpl');
     }
 
-    public function showError($msg){
-        echo $msg;
-    }
-
-    public function displayDrink($drink, $categories){
-        $smarty = new Smarty();
-        $smarty->assign('title', $drink->name);
-        $smarty->assign('BASE_URL', BASE_URL);
-        $smarty->assign('drink', $drink);
-        $smarty->assign('list_categories', $categories);
-        $smarty->display('templates/show_drink.tpl');
+    function showTableDrink($param, $id, $drink){
+        
+        $this->smarty->assign('param', $param);
+        $this->smarty->assign('drink', $drink);
+        $this->smarty->assign('id', $id);
+        $this->smarty->display('formDrink.tpl');
     }
 }
 ?>

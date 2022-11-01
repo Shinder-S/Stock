@@ -1,23 +1,24 @@
 {include file="header.tpl"}
 
-<form class="p-3 mt-3" action="validate" method="post">
-<img src="img/profile.jpg" width="150" height="80">
-    <div class="form-field d-flex align-items-center">
-        <span class="far fa-user"></span>
-        <input type="email" name="email" id="loginUser" required>
-        <label for="loginUser">Email</label>
+<div class="mt-5 w-50 mx-auto login-wrapper">
+    <form action="validate" method="post" class="form">
+        <img src="img/profile.jpg" alt=" " width="50" height="80">
+        <h2>Login</h2>
+        <div class="input-group">
+            <input type="email" name="email" id="loginUser" required>
+            <label for="loginUser">Email</label>
         </div>
-        <div class="form-field d-flex align-items-center">
-        <span class="fas fa-key"></span>
-        <input type="password" name="password" id="loginPassword" required>
-        <label for="loginPassword">Password</label>
-    </div>
-    {if $error}
-        <div class="alert alert-danger mt3">
-            {$error}
+        <div class="input-group">
+            <input type="password" name="password" id="loginPassword" required>
+            <label for="loginPassword">Password</label>
         </div>
-    {/if}
-    <input type="submit" class="submit btn-dark" value="Enter">
-</form>
-</html>
+        {if $error} 
+            <div class="alert alert-danger mt-3">
+                {$error}
+            </div>
+        {/if}
+        <input type="submit" value="Enter" class="submit-btn">
+    </form>
+</div>
+
 {include file="footer.tpl"}

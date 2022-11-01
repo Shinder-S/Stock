@@ -1,34 +1,25 @@
 "use strict"
 
-document.querySelector("#form-stock").addEventListener('submit', addDrink);
+let list = document.querySelectorAll('list');
+let links = document.querySelectorAll('.link');
 
-
-function getDrinks(){
-    fetch("api/drinks")
-    .then(response => response.json())
-    .then(drinks => {
-        app.drinks= drinks;
-    })
-    .catch(error => console.log(error));
+for(let i = 0; i < list.length; i++){
+    list[i].addEventListener('click', function(e){
+        let window = links[i].href;
+        window.location.href = window;
+    });
 }
 
-function addDrink(e){
-    e.preventDefault();
-    let data = {
-        name: document.querySelector("input[name=name]").value,
-        brand: document.querySelector("input[name=brand]").value,
-        amount: document.querySelector("input[name=amount]").value,
-    }
-
-    fetch('api/drinks', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        getDrinks();
-    })
-    .catch(error => console.log(error));
+let back_btn = document.querySelectorAll('.list-back');
+for(let i = 0; i < back_btn.length; i++){
+    back_btn[i].addEventListener('click', function(e){
+        history.back();
+    });
 }
 
-getDrinks();
+let back_btn_two = document.querySelectorAll('.list-two-back');
+for(let i = 0; i < back_btn_two.length; i++){
+    back_btn_two[i].addEventListener('click', function(e){
+        history.go(-2);
+    });
+}
