@@ -1,10 +1,10 @@
 <?php
+require_once './app/Models/pathModel.php';
 
-class DrinksModel {
-    private $db;
+class DrinkModel extends PathModel{
 
     function __construct(){
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_stock;charset=utf8', 'root', '');
+        parent::__construct();
     }
     
     public function getDrink($id){
@@ -15,7 +15,7 @@ class DrinksModel {
         return $drink;
     }
 
-    public function getDrinks(){
+    public function getDrinksNames(){
         $sentence = $this->db->prepare( "SELECT * from drinks");
         $sentence->execute();
         $drinks = $sentence->fetchAll(PDO::FETCH_OBJ);
