@@ -21,7 +21,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Options</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="Drinks">Drink</a></li>
+                    <li><a class="dropdown-item" href="Drink">Drink</a></li>
                     <li><a class="dropdown-item" href="AlcoholContent">AlcoholContent</a></li>
                     <li><a class="dropdown-item" href="Category">Category</a></li>
                 </ul>

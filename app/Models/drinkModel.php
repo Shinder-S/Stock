@@ -9,22 +9,22 @@ class DrinkModel extends PathModel{
     }
     
     function getDrinksNames(){
-        $query = $this->db->prepare( "SELECT id_drink, name from drinks ORDER BY name");
+        $query = $this->db->prepare( "SELECT id_drink, name from drink ORDER BY name");
         $query->execute();
         $drinks = $query->fetchAll(PDO::FETCH_OBJ);
         return $drinks;
     }
 
     function getDrinkById($id){
-        $sentence = $this->db->prepare( "SELECT * from drinks where id_drink= ?");
-        $sentence->execute([$id]);
-        $drink = $sentence->fetch(PDO::FETCH_OBJ);
+        $query = $this->db->prepare( "SELECT * from drink where id_drink= ?");
+        $query->execute([$id]);
+        $drink = $query->fetch(PDO::FETCH_OBJ);
 
         return $drink;
     }
 
     function getAllDrinks(){
-        $query = $this->db->prepare( "SELECT * from drinks ORDER BY name");
+        $query = $this->db->prepare( "SELECT * from drink ORDER BY name");
         $query->execute();
         $drinks = $query->fetchAll(PDO::FETCH_OBJ);
         
@@ -32,20 +32,19 @@ class DrinkModel extends PathModel{
     }
 
     function insertDrink($name, $brand, $amount){
-        $query = $this->db->prepare("INSERT INTO drinks(name,brand,amount) VALUES(?,?,?)");
+        $query = $this->db->prepare("INSERT INTO drink(name,brand,amount) VALUES(?,?,?)");
         $query->execute(array($name,$brand,$amount));
 
         return $this->db->lastInsertId();
     }
 
     function updateDrink($id, $name, $brand, $amount){
-        $query =  $this->db->prepare("UPDATE drinks SET name = ?, brand = ?, amount = ? WHERE id=?");
+        $query =  $this->db->prepare("UPDATE drink SET name = ?, brand = ?, amount = ? WHERE id=?");
         $query->execute(array($name, $brand, $amount, $id));
     }
 
-    function deleteDrink($id){
-        $query = $this->db->prepare("DELETE FROM drinks WHERE id=?");
+    function deleteDrinkById($id){
+        $query = $this->db->prepare("DELETE FROM drink WHERE id_drink = ?");
         $query->execute(array($id));
     }
 }
-?>

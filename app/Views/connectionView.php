@@ -2,41 +2,40 @@
 
 require_once './libs/Smarty.class.php';
 
-class ConectionView{
+class ConnectionView{
     protected $smarty;
 
-    function __construct(){
+    public function __construct() {
         $this->smarty = new Smarty();
     }
 
     function showError(){
-        $this->smarty->display('errorMessage.tpl');
+        $this->smarty->displayError('error.tpl');
     }
 
-    function showHome(){
+    public function showHome(){
         $this->smarty->display('home.tpl');
     }
 
-    function showMessage($table, $id){
+    public function showMessage($table, $id){
         $this->smarty->assign('table', $table);
         $this->smarty->assign('id', $id);
         $this->smarty->display('message.tpl');
     }
 
-    function showEditMessage($name, $id=null){
+    public function showEditMessage($name, $id=null){
         $this->smarty->assign('name', $name);
         $this->smarty->assign('id', $id);
-        $this->smarty->display('editMessage.tpl');        
+        $this->smarty->display('editMessage.tpl');
     }
-    
-    function showDelete($item, $id){
-        $this->smarty->assign('item', $item);
+
+    public function showDelete($param, $id){
+        $this->smarty->assign('param', $param);
         $this->smarty->assign('id', $id);
         $this->smarty->display('delete.tpl');
     }
 
-    function showDescription(){
+    public function showDescription(){
         $this->smarty->display('drinkDescription.tpl');
     }
 }
-?>

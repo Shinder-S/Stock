@@ -2,7 +2,7 @@
 
 require_once './libs/Smarty.class.php';
 
-class AlcoholContentView extends ConectionView{
+class AlcoholContentView extends ConnectionView{
     
     function __construct(){
         parent::__construct();
@@ -14,11 +14,11 @@ class AlcoholContentView extends ConectionView{
         $this->smarty->display('alcoholContentList.tpl');
     }
 
-    function showFormAlcoholContent($param, $id, $categories, $alcoholContents){
+    function showFormAlcoholContent($param, $id, $drinks, $alcoholContents){
         $this->smarty->assign('param', $param);
         $this->smarty->assign('id', $id);
-        $this->smarty->assign('categories', $categories);
+        $this->smarty->assign('drinks', $drinks);
         $this->smarty->assign('alcoholContent', $alcoholContents);
-        $this->smarty->display('formAlcoholContents.tpl');
+        $this->smarty->display('formAlcoholContent.tpl');
     }
 }

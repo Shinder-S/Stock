@@ -2,7 +2,6 @@
 
 class UserModel extends PathModel{
 
-
     function __construct(){
         parent::__construct();
     }
@@ -14,4 +13,3 @@ class UserModel extends PathModel{
         return $sentence->fetch(PDO::FETCH_OBJ);
     }
 }
-?>

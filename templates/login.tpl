@@ -2,7 +2,6 @@
 
 <div class="mt-5 w-50 mx-auto login-wrapper">
     <form action="validate" method="post" class="form">
-        <img src="img/profile.jpg" alt=" " width="50" height="80">
         <h2>Login</h2>
         <div class="input-group">
             <input type="email" name="email" id="loginUser" required>

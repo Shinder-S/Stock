@@ -1,10 +1,10 @@
 <?php
 
-require_once('./app/Controllers/generalController.php');
-require_once('./app/Models/drinkModel.php');
-require_once('./app/Views/drinkView.php');
+require_once './app/Controllers/checkController.php';
+require_once './app/Models/drinkModel.php';
+require_once './app/Views/drinkView.php';
 
-class DrinkController extends GeneralController{
+class DrinkController extends CheckController{
 
     function __construct(){
         parent::__construct();
@@ -12,6 +12,11 @@ class DrinkController extends GeneralController{
         $this->view = new DrinkView();
     }
     
+    function showDrinks(){
+        $drinks = $this->model->getAllDrinks();
+        $this->view->showDrinks($drinks);
+    }
+
     function addDrink(){
         $this->checkLogIn();
         $name = $_POST['name'];
@@ -22,7 +27,7 @@ class DrinkController extends GeneralController{
         $this->view->showEditMessage($name);
     }
 
-    function showCategories($param, $id=null){
+    function showFormDrinks($param, $id=null){
         $this->checkLogIn();
         $drink = null;
         if(isset($id))
@@ -32,7 +37,7 @@ class DrinkController extends GeneralController{
 
     function deleteDrink($table, $id){
         $this->checkLogIn();
-        $this->model->deleteDrink($id);
+        $this->model->deleteDrinkById($id);
         $this->view->showMessage($table, $id);
     }
 
@@ -45,14 +50,5 @@ class DrinkController extends GeneralController{
         $this->model->editDrink($name, $brand, $category, $id);
         $this->view->showEditMessage($name, $id);
     }
-
-    function updateDrink($id){
-        $this->checkLogIn();
-        $this->model->updateDrink($id, $_POST['name'], $_POST['brand'], $_POST['amount'], $_POST['id_category']);
-        header("Location: " . BASE_URL);
-    }
-    
-    
+ 
 }
-
-?>

@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 
 {if isset($alcoholContents[0]->DrinkName)}
-  <h1 class="font-heading">Showing {$count} Alcohol Content from {$alcoholContent[0]->DrinkName} Drink</h1>
+  <h1 class="font-heading">Showing {$count} Alcohol Content from {$alcoholContents[0]->DrinkName} Drink</h1>
 {else}
   <h1 class="font-heading">Showing all description of Alcohol Contents</h1>
 {/if}
@@ -17,15 +17,16 @@
   <tbody>
     {foreach from=$alcoholContents item=$alcoholContent}
       <tr>
-        <a class="link" href='Category/list/{$alcoholContent->name}' hidden>{$drink->id_alcoholContent}</a>
+        <a class="link" href='Category/list/{$alcoholContent->name}' hidden>{$drink->id_alcohol_content}</a>
       </tr>
         <tr class="list">
             <td>{$alcoholContent->name}</td>
             <td>{$alcoholContent->brand}</td>
+            <td>{$alcoholContent->id_drink}</td>
             <td float-end>
               {if isset($smarty.session.IS_LOGGED)&&($smarty.session.IS_LOGGED)}
-                <a href='AlcoholContent/form/edit/{$alcoholContent->id_alcoholContent}' type='button' class='btn btn-success'><img src="./img/edit.png" alt="Logo" width="25" height="25"></a>    
-                <a href='AlcoholContent/confirm-delete/{$alcoholContent->id_alcoholContent}' type='button' class='btn btn-danger'><img src="./img/delete.png" alt="Logo" width="25" height="25"></a>
+                <a href='AlcoholContent/form/edit/{$alcoholContent->id_alcohol_content}' type='button' class='btn btn-success'><img src="./img/edit.png" alt="Logo" width="25" height="25"></a>    
+                <a href='AlcoholContent/confirm-delete/{$alcoholContent->id_alcohol_content}' type='button' class='btn btn-danger'><img src="./img/delete.png" alt="Logo" width="25" height="25"></a>
               {/if}
             </td>
         </tr>

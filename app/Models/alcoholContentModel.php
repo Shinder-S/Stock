@@ -1,6 +1,6 @@
 <?php
 
-require_once '.app/Models/pathModel.php';
+require_once './app/Models/pathModel.php';
 
 class AlcoholContentModel extends PathModel{
     function __construct(){
@@ -26,7 +26,7 @@ class AlcoholContentModel extends PathModel{
     }
     
     function getAllAlcoholContent(){
-        $query = $this->db->prepare("SELECT FROM AlcoholContent ORDER BY name");
+        $query = $this->db->prepare("SELECT FROM alcohol_content ORDER BY name");
         $query->execute();
 
         $alcoholContent = $query->fetchAll(PDO::FETCH_OBJ);
@@ -34,8 +34,8 @@ class AlcoholContentModel extends PathModel{
         return $alcoholContent;
     }
 
-    function getAlcoholContentNames(){
-        $query = $this->db->prepare("SELECT id_alcoholContent, name FROM AlcoholContent ORDER BY name");
+    function getAlcoholContentsNames(){
+        $query = $this->db->prepare("SELECT id_alcohol_content, name FROM alcohol_content ORDER BY name");
         $query->execute();
 
         $alcoholContents = $query->fetchAll(PDO::FETCH_OBJ);
@@ -44,7 +44,7 @@ class AlcoholContentModel extends PathModel{
     }
 
     function getAllAlcoholContentById($id){
-        $query = $this->db->prepare("SELECT * FROM AlcoholContent WHERE id_alcoholContent = ?");
+        $query = $this->db->prepare("SELECT * FROM alcohol_content WHERE id_alcohol_content = ?");
         $query->execute([$id]);
 
         $alcoholContent = $query->fetchAll(PDO::FETCH_OBJ);

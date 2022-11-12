@@ -12,9 +12,10 @@ class CheckController{
         $this->sessionStart();
     }
 
-    function checkLogIn(){
-        if(!isset($_SESSION['IS_LOGGED']))
+    protected function checkLogIn(){
+        if(!isset($_SESSION['IS_LOGGED'])){
             header("Location: " . BASE_URL . 'login');
+            die();
+        }
     }
 }
-?>

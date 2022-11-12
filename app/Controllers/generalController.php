@@ -7,7 +7,7 @@ class GeneralController extends CheckController{
 
     function __construct(){
         parent::__construct();
-        $this->view = new ConectionView();
+        $this->view = new ConnectionView();
     }
 
     function showHome(){
@@ -27,4 +27,3 @@ class GeneralController extends CheckController{
         $this->view->showDelete($item, $id);
     }
 }
-?>

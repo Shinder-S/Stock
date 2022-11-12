@@ -1,11 +1,11 @@
 <?php
 
-require_once './app/Controllers/generalController.php';
-require_once './app/Models/alcoholContent.php';
+require_once './app/Controllers/checkController.php';
+require_once './app/Models/alcoholContentModel.php';
 require_once './app/Models/drinkModel.php';
 require_once './app/Views/alcoholContentView.php';
 
-class AlcoholContentController extends GeneralController{
+class AlcoholContentController extends CheckController{
 
     private $drinkModel;
 
@@ -16,9 +16,9 @@ class AlcoholContentController extends GeneralController{
         $this->drinkModel = new DrinkModel();
     }
 
-    function showAlcoholContent($name = null){
+    function showAlcoholContents($name = null){
         if(isset($name))
-            $alcoholContent = $this->model->getAlcoholContentByCategory($name);
+            $alcoholContent = $this->model->getAlcoholContentByDrink($name);
         else
             $alcoholContent = $this->model->getAllAlcoholContents();
         $this->view->showAlcoholContent($alcoholContent);
@@ -37,8 +37,8 @@ class AlcoholContentController extends GeneralController{
         $this->checkLogIn();
         $name = $_POST['name'];
         $brand = $_POST['brand'];
-        $id_category = $_POST['id_category'];
-        $this->model->insertAlcoholContent($name, $brand, $id_category);
+        $id_drink = $_POST['id_drink'];
+        $this->model->insertAlcoholContent($name, $brand, $id_drink);
         $this->view->showMessage($name);
     }
 
@@ -46,8 +46,8 @@ class AlcoholContentController extends GeneralController{
         $this->checkLogIn();
         $name = $_POST['name'];
         $brand = $_POST['brand'];
-        $id_category = (int)$_POST['id_category'];
-        $this->model->editAlcoholContent($name, $brand, $id_category, $id);
+        $id_drink = (int)$_POST['id_drink'];
+        $this->model->editAlcoholContent($name, $brand, $id_drink, $id);
         $this->view->showMessage($name);
     }
 

@@ -1,7 +1,7 @@
 <?php
 require_once './libs/Smarty.class.php';
 
-class AuthView extends ConectionView{
+class AuthView extends ConnectionView{
     
     function __construct(){
         parent::__construct();
@@ -12,4 +12,3 @@ class AuthView extends ConectionView{
         $this->smarty->display("login.tpl");
     }
 }
-?>

@@ -16,9 +16,9 @@
         <a class="link" href='AlcoholContent/list/{$drink->name}' hidden>{$drink->id_drink}</a>
       </tr>
       <tr class="list">
-        <td>{$drink->Name}</td>
-        <td>{$drink->Brand}</td>
-        <td>{$drink->Amount}</td>
+        <td>{$drink->name}</td>
+        <td>{$drink->brand}</td>
+        <td>{$drink->amount}</td>
         {if isset($smarty.session.IS_LOGGED)&&($smarty.session.IS_LOGGED)}
           <td class="d-flex p-2">
             <a href='Drink/form/edit/{$drink->id_drink}' type='button' class='btn btn-success me-1'><img src="./img/edit.png" alt="Logo" width="25" height="25"></a>    

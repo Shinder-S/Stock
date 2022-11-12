@@ -1,8 +1,7 @@
 {include file="header.tpl"}
 
-<form 
-action="Class/{if $param === 'add'}add{else}edit/{$id}{/if}"
- method="POST" class="my-4">
+<form action="Drink/{if $param === 'add'}add{else}edit/{$id}{/if}"
+     method="POST" class="my-4">
     <div class="row">
         <div class="col-9">
             <div class="form-group">
@@ -10,6 +9,8 @@ action="Class/{if $param === 'add'}add{else}edit/{$id}{/if}"
                 <input name="name" {if isset($id)}value="{$drink[0]->name}"{/if} type="text" class="form-control w-50" required>
                 <label>Brand</label>
                 <input name="brand" {if isset($id)}value="{$drink[0]->brand}"{/if} type="text" class="form-control w-50" required>
+                <label>Amount</label>
+                <input name="amount" {if isset($id)}value="{$drink[0]->amount}"{/if} type="text" class="form-control w-50" required>
             </div>
         </div>
 

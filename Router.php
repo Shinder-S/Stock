@@ -2,7 +2,7 @@
 require_once './app/Controllers/drinkController.php';
 require_once './app/Controllers/generalController.php';
 require_once './app/Controllers/categoryController.php';
-require_once './app/Controllers/checkController.php';
+require_once './app/Controllers/alcoholContentController.php';
 require_once './app/Controllers/authController.php';
 
 define("BASE_URL", '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -34,19 +34,59 @@ switch ($params[0]){
         $AuthController = new AuthController();
         $AuthController->logout();
         break;
-    case 'AlcoholContent':
+    case 'Drink':
         if(isset($params[1]) && ($params[1])){
+            switch($params[1]){
+                case 'form':
+                    $DrinkController = new DrinkController();
+                    if(isset($params[3]))
+                        $DrinkController->showFormDrinks($parms[2], $params[3]);
+                    else
+                        $DrinkController->showFormDrinks($params[2]);
+                    break;
+                case 'add':
+                    $DrinkController = new DrinkController();
+                    $DrinkController->addDrink();
+                    break;
+                case 'edit':
+                    $DrinkController = new DrinkController();
+                    $DrinkController->editDrink($params[2]);
+                    break;
+                case 'confirm-delete':
+                    $GeneralController = new GeneralController();
+                    $GeneralController->showDelete($params[0], $params[2]);
+                    break;
+                case 'delete':
+                    $DrinkController = new DrinkController();
+                    $DrinkController->deleteDrink($params[0], $params[2]);
+                    break;
+                default:
+                    $GeneralController = new GeneralController();
+                    $GeneralController->displayError();
+                    break;
+            }
+        }
+        else{
+            $DrinkController = new DrinkController();
+            $DrinkController->showDrinks();
+            break;
+        }
+        break;
+    case 'Alcohol Content':
+        if(isset($params[1])&&!empty($params[1])){
             switch($params[1]){
                 case 'list':
                     $AlcoholContentController = new AlcoholContentController();
-                    $AlcoholContentController->showAlcoholContent($params[2]);
+                    $AlcoholContentController->showAlcoholContents($params[2]);
                     break;
                 case 'form':
                     $AlcoholContentController = new AlcoholContentController();
-                    if(isset($params[3]))
-                        $AlcoholContentController->showFormAlcoholContent($parms[2], $params[3]);
-                    else
+                    if(isset($params[3])){
+                        $AlcoholContentController->showFormAlcoholContent($params[2], $params[3]);
+                    }
+                    else{
                         $AlcoholContentController->showFormAlcoholContent($params[2]);
+                    }
                     break;
                 case 'add':
                     $AlcoholContentController = new AlcoholContentController();
@@ -54,26 +94,28 @@ switch ($params[0]){
                     break;
                 case 'edit':
                     $AlcoholContentController = new AlcoholContentController();
-                    $AlcoholContentController->editAlcoholContent($params[2]);
+                    $AlcoholContentController->editAlcoholContent($params[1], $params[2]);
                     break;
                 case 'confirm-delete':
-                    $MainController = new GeneralController();
-                    $MainController->showDelete($params[0], $params[2]);
+                    $GeneralController = new GeneralController();
+                    $GeneralController->showDelete($params[0], $params[2]);
                     break;
                 case 'delete':
                     $AlcoholContentController = new AlcoholContentController();
                     $AlcoholContentController->deleteAlcoholContent($params[0], $params[2]);
                     break;
-                case 'show':
-                    $AlcoholContentController = new AlcoholContentController();
-                    $AlcoholContentController->showAlcoholContent($params[2]);
-                    break;
                 default:
-                    $MainController = new GeneralController();
-                    $MainController->displayError();
+                    $GeneralController = new GeneralController();
+                    $GeneralController->displayError();
                     break;
             }
         }
+        else{
+            $AlcoholContentController = new AlcoholContentController();
+            $AlcoholContentController->showAlcoholContents();
+            break;
+        }
+        break;
     case 'Category':
         if(isset($params[1]) && !empty($params[1])){
             switch($params[1]){
@@ -93,8 +135,8 @@ switch ($params[0]){
                     $CategoryController->editCategory($params[2]);
                     break;
                 case 'check-delete':
-                    $CategoryController = new CategoryController();
-                    $CategoryController->showDelete($params[0], $params[2]);
+                    $GeneralController = new GeneralController();
+                    $GeneralController->showDelete($params[0], $params[2]);
                     break;
                 case 'delete':
                     $CategoryController = new CategoryController();

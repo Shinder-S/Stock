@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<form action="AlcoholContent/{if $param === 'add'}add{else}edit/{$id}{/if}" method="POST" class="my-4">
+<form action="alcohol_content/{if $param === 'add'}add{else}edit/{$id}{/if}" method="POST" class="my-4">
     <div class="col-9">
         <div class="form-group">
             <label>Name</label>

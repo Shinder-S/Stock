@@ -6,14 +6,12 @@
             <div class="form-group">
                 <label>Name</label>
                 <input name="name" {if isset($id)}value="{$category[0]->name}"{/if} type="text" class="form-control w-50" required>
-                <label>Author</label>
-                <input name="author" {if isset($id)}value="{$category[0]->brand}"{/if} type="text" class="form-control w-50" required>
                 <label>Amount</label>
                 <input name="amount" {if isset($id)}value="{$category[0]->amount}"{/if} type="text" class="form-control w-50" required>
                 <label>Alcohol Content</label>
-                <select name="id_alcoholContent" class="form-select mt-2 w-50" aria-label="Default select example" required>
+                <select name="id_alcohol_content" class="form-select mt-2 w-50" aria-label="Default select example" required>
                 {foreach from=$alcoholContents item=$alcoholContent}
-                    <option value="{$alcoholContent->id_alcoholContent}" {if isset($id)&&(($category[0]->id_alcoholContent)===($alcoholContent->id_alcoholContent))}selected{/if}>{$alcoholContent->name}</option>
+                    <option value="{$alcoholContent->id_alcohol_content}" {if isset($id)&&(($category[0]->id_alcohol_content)===($alcoholContent->id_alcohol_content))}selected{/if}>{$alcoholContent->name}</option>
                 {/foreach}
                 </select>
             </div>

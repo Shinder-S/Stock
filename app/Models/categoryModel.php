@@ -8,7 +8,7 @@ class CategoryModel extends PathModel{
     }
 
     function getCategory($id){
-        $query = $this->db->prepare("SELECT * FROM Categories WHERE id_category = ?");
+        $query = $this->db->prepare("SELECT * FROM Category WHERE id_category = ?");
         $query->execute([$id]);
 
         $category = $query->fetchAll(PDO::FETCH_OBJ);
@@ -31,7 +31,7 @@ class CategoryModel extends PathModel{
     }
 
     function getAllCategories(){
-        $query = $this->db->prepare("SELECT * FROM Categories ORDER BY alcoholContent");
+        $query = $this->db->prepare("SELECT * FROM Category ORDER BY id_alcohol_content");
         $query->execute();
 
         $categories = $query->fetchAll(PDO::FETCH_OBJ);
@@ -39,8 +39,8 @@ class CategoryModel extends PathModel{
     }
 
     function getAlcoholContentCategory($brand){
-        $query = $this->db->prepare("SELECT a.*, b.brand as alcoholContent FROM Category a
-                                    INNER JOIN alcoholContent b ON a.id_alcoholContent = b.id_alcoholContent
+        $query = $this->db->prepare("SELECT a.*, b.brand as id_alcohol_content FROM Category a
+                                    INNER JOIN id_alcohol_content b ON a.id_alcohol_content = b.id_alcohol_content
                                     WHERE b.name = ? ORDER BY alcoholContent");
         $query->execute([$brand]);
 
@@ -53,7 +53,7 @@ class CategoryModel extends PathModel{
         $path;
         if($_FILES['photo']['type'] == "image/jpg")
             $path = ".jpg";
-        elseif($_FILES['photo']['type'] == "image/png")
+        else if($_FILES['photo']['type'] == "image/png")
             $path = ".png";
         else
             $path = ".jpeg";
@@ -62,7 +62,7 @@ class CategoryModel extends PathModel{
         return $target;
     }
 
-    private function deleteImage($image){
+    function deleteImage($image){
         unlink($image);
     }
 
@@ -75,17 +75,17 @@ class CategoryModel extends PathModel{
         $this->deleteImage($category[0]->$image);
     }
 
-    function editCategory($alcoholContent, $brand, $amount, $id_alcoholContent, $image, $id){
+    function editCategory($name, $brand, $amount, $id_alcohol_content, $image, $id){
         $category = $this->getCategoryById($id);
         $imgPath = $this->uploadImage($image);
-        $query = $this->db->prepare("UPDATE Category SET alcoholContent = ?
+        $query = $this->db->prepare("UPDATE Category SET name = ?
                                                         brand = ?
                                                         amount = ?
-                                                        id_alcoholContent = ?
+                                                        id_alcohol_content = ?
                                                         image = ?
                                     WHERE id_category = ?");
 
-        $query->execute([$alcoholContent, $brand, $amount, $id_alcoholContent, $imgPath, $id]);
+        $query->execute([$name, $brand, $amount, $id_alcohol_content, $imgPath, $id]);
         $this->deleteImage($category[0]->$image);
     }
 
