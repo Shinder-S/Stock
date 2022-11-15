@@ -40,9 +40,9 @@ switch ($params[0]){
                 case 'form':
                     $DrinkController = new DrinkController();
                     if(isset($params[3]))
-                        $DrinkController->showFormDrinks($parms[2], $params[3]);
+                        $DrinkController->showFormDrink($params[2], $params[3]);
                     else
-                        $DrinkController->showFormDrinks($params[2]);
+                        $DrinkController->showFormDrink($params[2]);
                     break;
                 case 'add':
                     $DrinkController = new DrinkController();

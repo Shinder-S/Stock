@@ -31,12 +31,12 @@
   </tbody>
 </table>
 
-<button type="submit" class="btn btn-info back-list">Back</button>
+<a type="submit" class="btn btn-info back-list">Back</a>
 
 <a href='' type='button' class='btn btn-info '>Home</a>
 
 {if isset($smarty.session.IS_LOGGED)&&($smarty.session.IS_LOGGED)}
-  <a href='drink/form/add' type='button' class='btn btn-info float-end me-3'>Add</a>
+  <a href='Drink/form/add' type='button' class='btn btn-info float-end me-3'>Add</a>
 {/if}
 
 {include file="footer.tpl"}

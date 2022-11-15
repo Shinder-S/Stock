@@ -8,6 +8,6 @@
 </div>
 </div>
 
-<p class="mb-0"><button type="button" class="btn btn-outline-success back-2-list w-25 mt-2">Back</button></p>
+<p class="mb-0"><a type="button" class="btn btn-outline-success back-2-list w-25 mt-2">Back</a></p>
 
 {include file="footer.tpl"}

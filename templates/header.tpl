@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <ul class="navbar-nav">
-            <img src="./img/on-the-rocks.jpg" alt="logo" width="110" height="120">
+            <img src="./img/on-the-rocks.jpg" alt="logo" width="80" height="70">
             <li class="nav-item dropdown">
                 <a class="nav-link" href=" ">Home</a>
             </li>
@@ -22,7 +22,7 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Options</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="Drink">Drink</a></li>
-                    <li><a class="dropdown-item" href="AlcoholContent">AlcoholContent</a></li>
+                    <li><a class="dropdown-item" href="AlcoholContent">Alcohol Content</a></li>
                     <li><a class="dropdown-item" href="Category">Category</a></li>
                 </ul>
             </li>

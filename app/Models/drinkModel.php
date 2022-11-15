@@ -38,8 +38,8 @@ class DrinkModel extends PathModel{
         return $this->db->lastInsertId();
     }
 
-    function updateDrink($id, $name, $brand, $amount){
-        $query =  $this->db->prepare("UPDATE drink SET name = ?, brand = ?, amount = ? WHERE id=?");
+    function editDrink($id, $name, $brand, $amount){
+        $query =  $this->db->prepare("UPDATE drink SET name = ?, brand = ?, amount = ? WHERE id_drink = ?");
         $query->execute(array($name, $brand, $amount, $id));
     }
 

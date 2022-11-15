@@ -46,9 +46,9 @@ class CategoryController extends CheckController{
     function editCategory($id){
         $this->checkLogIn();
         $name = $_POST['name'];
-        $brand = $_POST['brand'];
+        $amount = $_POST['amount'];
 
-        $this->model->editCategory($name, $brand);
+        $this->model->editCategory($name, $amount);
         
         $this->view->showMessage($name);
     }

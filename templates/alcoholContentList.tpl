@@ -34,7 +34,7 @@
   </tbody>
 </table>
 
-<button type="submit" class="btn btn-info mt-2 back-list">Back</button>
+<a type="submit" class="btn btn-info mt-2 back-list">Back</a>
 
 <a href='' type='button' class='btn btn-info mt-2'>Home</a>
 

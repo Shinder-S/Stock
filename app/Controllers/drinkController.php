@@ -21,18 +21,18 @@ class DrinkController extends CheckController{
         $this->checkLogIn();
         $name = $_POST['name'];
         $brand = $_POST['brand'];
-        $category = $_POST['category'];
+        $amount = $_POST['amount'];
 
-        $this->model->insertDrink($name, $brand, $category);
+        $this->model->insertDrink($name, $brand, $amount);
         $this->view->showEditMessage($name);
     }
 
-    function showFormDrinks($param, $id=null){
+    function showFormDrink($param, $id=null){
         $this->checkLogIn();
         $drink = null;
         if(isset($id))
-            $drink = $this->model->getDrinksById($param, $id, $drink);
-        $this->view->showCategories($param, $id, $drink);
+            $drink = $this->model->getDrinkById($param, $id, $drink);
+        $this->view->showFormDrink($param, $id, $drink);
     }
 
     function deleteDrink($table, $id){
@@ -45,9 +45,9 @@ class DrinkController extends CheckController{
         $this->checkLogIn();
         $name = $_POST['name'];
         $brand = $_POST['brand'];
-        $category = $_POST['category'];
+        $amount = $_POST['amount'];
 
-        $this->model->editDrink($name, $brand, $category, $id);
+        $this->model->editDrink($name, $brand, $amount, $id);
         $this->view->showEditMessage($name, $id);
     }
  

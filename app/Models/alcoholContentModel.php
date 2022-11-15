@@ -7,31 +7,31 @@ class AlcoholContentModel extends PathModel{
         parent::__construct();
     }
 
-    function insertAlcoholContent($name, $brand, $id_category){
-        $query = $this->db->prepare("INSERT INTO alcoholContent(naem, brand, id_category) VALUES (?,?,?)");
-        $query->execute([$name, $brand, $id_category]);
+    function insertAlcoholContent($name, $brand, $id_drink){
+        $query = $this->db->prepare("INSERT INTO alcoholContent(name, brand, id_drink) VALUES (?,?,?)");
+        $query->execute([$name, $brand, $id_drink]);
     }
 
     function deleteAlcoholContentById($id){
-        $query = $this->db->prepare("DELETE FROM alcoholContent WHERE id_category = (?)");
+        $query = $this->db->prepare("DELETE FROM alcoholContent WHERE id_alcohol_content = (?)");
         $query->execute([$id]);
     }
 
-    function editAlcoholContent($name, $brand, $id_category, $id){
+    function editAlcoholContent($name, $brand, $id_drink, $id){
         $query = $this->db->prepare("UPDATE alcoholContent SET name = ?, 
                                                             brand = ?,
-                                                            id_category = ?
-                                    WHERE id_category = ?");
-        $query->execute([$name, $brand, $id_category, $id]);
+                                                            id_drink = ?
+                                    WHERE id_alcohol_content = ?");
+        $query->execute([$name, $brand, $id_drink, $id]);
     }
     
     function getAllAlcoholContent(){
         $query = $this->db->prepare("SELECT FROM alcohol_content ORDER BY name");
         $query->execute();
 
-        $alcoholContent = $query->fetchAll(PDO::FETCH_OBJ);
+        $alcoholContents = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $alcoholContent;
+        return $alcoholContents;
     }
 
     function getAlcoholContentsNames(){

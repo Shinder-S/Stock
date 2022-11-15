@@ -7,17 +7,11 @@
                 <label>Name</label>
                 <input name="name" {if isset($id)}value="{$category[0]->name}"{/if} type="text" class="form-control w-50" required>
                 <label>Amount</label>
-                <input name="amount" {if isset($id)}value="{$category[0]->amount}"{/if} type="text" class="form-control w-50" required>
-                <label>Alcohol Content</label>
-                <select name="id_alcohol_content" class="form-select mt-2 w-50" aria-label="Default select example" required>
-                {foreach from=$alcoholContents item=$alcoholContent}
-                    <option value="{$alcoholContent->id_alcohol_content}" {if isset($id)&&(($category[0]->id_alcohol_content)===($alcoholContent->id_alcohol_content))}selected{/if}>{$alcoholContent->name}</option>
-                {/foreach}
-                </select>
+                <input name="amount" {if isset($id)}value="{$category[0]->amount}"{/if} type="number" class="form-control w-50" required>
             </div>
         </div>
         <div class="form-group">
-            <label>Photo link</label>
+            <label>Drop your photo</label>
             <input type="file" name="photo" id="imageToUpload">
         </div>
     <button type="submit" class="btn btn-primary mt-2 w-25">Save</button>

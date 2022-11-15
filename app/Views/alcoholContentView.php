@@ -14,11 +14,11 @@ class AlcoholContentView extends ConnectionView{
         $this->smarty->display('alcoholContentList.tpl');
     }
 
-    function showFormAlcoholContent($param, $id, $drinks, $alcoholContents){
+    function showFormAlcoholContent($param, $id, $drinks, $alcoholContent){
         $this->smarty->assign('param', $param);
         $this->smarty->assign('id', $id);
         $this->smarty->assign('drinks', $drinks);
-        $this->smarty->assign('alcoholContent', $alcoholContents);
+        $this->smarty->assign('alcoholContent', $alcoholContent);
         $this->smarty->display('formAlcoholContent.tpl');
     }
 }

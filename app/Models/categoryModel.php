@@ -38,10 +38,10 @@ class CategoryModel extends PathModel{
         return $categories;
     }
 
-    function getAlcoholContentCategory($brand){
-        $query = $this->db->prepare("SELECT a.*, b.brand as id_alcohol_content FROM Category a
-                                    INNER JOIN id_alcohol_content b ON a.id_alcohol_content = b.id_alcohol_content
-                                    WHERE b.name = ? ORDER BY alcoholContent");
+    function getCategoriesByAlcoholContent($brand){
+        $query = $this->db->prepare("SELECT a.*, b.name as AlcoholContentName FROM Category a
+                                    INNER JOIN AlcoholContent b ON a.id_alcohol_content = b.id_alcohol_content
+                                    WHERE b.name = ? ORDER BY name");
         $query->execute([$brand]);
 
         $categories = $query->fetchAll(PDO::FETCH_OBJ);
